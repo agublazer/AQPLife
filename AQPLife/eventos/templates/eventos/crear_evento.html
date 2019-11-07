@@ -1,0 +1,30 @@
+{%extends 'eventos/index.html'%}
+
+{%block title%}Modificar Evento{%endblock%}
+
+{%block section_1%}
+	<div class="section container row">
+		<h2> Modificar Datos </h2>
+
+				<form action="" method="post">
+		    {% csrf_token %}
+		    {{ form.as_p }}
+		    <input type="submit" value="Agregar">
+		</form>
+			{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}	
+				
+	</div>
+{%endblock%}
